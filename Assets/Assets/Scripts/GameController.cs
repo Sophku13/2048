@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     {
         int spawnChoice = Random.Range(0, Cells.Length);
         if(Cells[spawnChoice].childCount != 0)
+        
         {
             spawnCells();
             Debug.Log(Cells[spawnChoice].name + "cell already filled");
@@ -46,7 +47,7 @@ public class GameController : MonoBehaviour
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(2);
         }
-        else // instantiate a  fill object with value 4
+            else // instantiate a  fill object with value 4
         {
        
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
