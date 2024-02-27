@@ -1757,7 +1757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillPrefab: {fileID: 7016442932581722258, guid: cd184aff8ff8d4840b4f5124eac96e5c, type: 3}
-  cells:
+  Cells:
   - {fileID: 467540806}
   - {fileID: 2059032834}
   - {fileID: 833938037}
