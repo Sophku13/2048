@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.7176471, g: 0.57254905, b: 0.49803925, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5372549}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &115577041
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.854902, g: 0.68235296, b: 0.59607846, a: 1}
+  m_Color: {r: 0.6603774, g: 0.49101594, b: 0.40806338, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1678,6 +1678,7 @@ GameObject:
   - component: {fileID: 1599681058}
   - component: {fileID: 1599681060}
   - component: {fileID: 1599681059}
+  - component: {fileID: 1599681061}
   m_Layer: 5
   m_Name: GamePanel
   m_TagString: Untagged
@@ -1718,7 +1719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9303578, b: 0.9303578, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1743,6 +1744,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599681057}
   m_CullTransparentMesh: 1
+--- !u!114 &1599681061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599681057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be07f96169daa64596607d9fdc8bdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillPrefab: {fileID: 7016442932581722258, guid: cd184aff8ff8d4840b4f5124eac96e5c, type: 3}
+  Cells: []
 --- !u!1001 &1689895703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2122,6 +2137,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 115577039}
     m_Modifications:
+    - target: {fileID: 6761920479955108145, guid: 7a0fad78b870ada4395fc744eadbefd7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.49803925
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761920479955108145, guid: 7a0fad78b870ada4395fc744eadbefd7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761920479955108145, guid: 7a0fad78b870ada4395fc744eadbefd7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7176471
+      objectReference: {fileID: 0}
     - target: {fileID: 6761920479955108156, guid: 7a0fad78b870ada4395fc744eadbefd7, type: 3}
       propertyPath: m_Name
       value: Cell1
