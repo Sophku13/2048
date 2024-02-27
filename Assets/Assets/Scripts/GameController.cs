@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] GameObject fillPrefab;
-    [SerializeField] Transform[] Cells;
+    [SerializeField] Transform[] cells;
     //^used to make the private variables accessible within the Unity editor without making them public
     
     
@@ -24,24 +24,25 @@ public class GameController : MonoBehaviour
         }
     }
     public void spawnCells()
-    //instantiate fill cells, either spawn a 2 or a 4
+    //instantiate fill cells
     {
-        float percentage = Random.Range(0f, 1f);
-        Debug.Log(percentage);
-        if(percentage <0.2f)
+        float chance = Random.Range(0f, 1f);
+        Debug.Log(chance);
+
+        if(chance < 0.2f) // do nothing
         {
             return;
         }
-        else if(percentage < 0.8f)
+        else if(chance < 0.8f) // instantiate a  fill object with value 2
         {
-            int spawnChoice = Random.Range(0,Cells.Length);
-            GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
+            int spawnChoice = Random.Range(0, cells.Length);
+            GameObject tempFill = Instantiate(fillPrefab, cells[spawnChoice]);
             Debug.Log(2);
         }
-        else
+        else // instantiate a  fill object with value 4
         {
-            int spawnChoice = Random.Range(0, Cells.Length);
-            GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
+            int spawnChoice = Random.Range(0, cells.Length);
+            GameObject tempFill = Instantiate(fillPrefab, cells[spawnChoice]);
             Debug.Log(4);
         }
     }
