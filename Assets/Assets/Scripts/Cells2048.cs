@@ -8,15 +8,17 @@ public class Cells2048 : MonoBehaviour
     public Cells2048 left;
     public Cells2048 up;
     public Cells2048 down;
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable() // Subscribe
     {
-        
+        GameController.slide += OnSlide;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() // Unsubscribe
     {
-        
+        GameController.slide -= OnSlide;
+    }
+    private void OnSlide(string sentContents)
+    {
+       Debug.Log(sentContents);
     }
 }
