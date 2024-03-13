@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            spawnCells();
+            SpawnCells();
         }
         //Inputs for all directions with WASD
         if(Input.GetKeyDown(KeyCode.W))
@@ -41,30 +41,28 @@ public class GameController : MonoBehaviour
             slide("d");
         }
     }
-    public void spawnCells()
+    public void SpawnCells()
     //instantiate fill cells
     {
         int spawnChoice = UnityEngine.Random.Range(0, Cells.Length);
         if(Cells[spawnChoice].childCount != 0)
-
         {
-            spawnCells();
             Debug.Log(Cells[spawnChoice].name + "cell already filled");
+            SpawnCells();
             return;
         }
         float chance = UnityEngine.Random.Range(0f, 1f);
         Debug.Log(chance);
-
         if(chance < 0.2f) // do nothing
         {
             return;
         }
         else if(chance < 0.8f) // instantiate a  fill object with value 2
         {
-            
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(2);
             FillTiles tempFillComp = tempFill.GetComponent<FillTiles>();
+            Cells[spawnChoice].GetComponent<Cells2048>().fill = tempFillComp;
             tempFillComp.FillValueUpdate(2);
         }
             else // instantiate a  fill object with value 4
@@ -73,6 +71,7 @@ public class GameController : MonoBehaviour
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(4);
             FillTiles tempFillComp = tempFill.GetComponent<FillTiles>();
+            Cells[spawnChoice].GetComponent<Cells2048>().fill = tempFillComp;
             tempFillComp.FillValueUpdate(4);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FillTiles : MonoBehaviour
 {
-    int value;
+    public int value;
     [SerializeField] Text displayedValue;
     
     public void FillValueUpdate(int valueIn)
