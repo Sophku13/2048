@@ -11,24 +11,28 @@ public class Cells2048 : MonoBehaviour
 
     public FillTiles fill;
 
-    private void OnEnable() // Subscribe
+    private void OnEnable() // Subscribes to a slide event
     {
         GameController.slide += OnSlide;
     }
 
-    private void OnDisable() // Unsubscribe
+    private void OnDisable() // Unsubscribes
     {
         GameController.slide -= OnSlide;
     }
+
     private void OnSlide(string sentContents)
+/**
+* <summary>
+reacts to direction inputs ('w', 'a', 's', 'd')
+and moves an object up, left, down, or right, unless it's at the grid's edge. 
+</summary>
+*/
     {
         Debug.Log(sentContents);
-
         if (sentContents == "w") // shift all fill objects up
         {
             if (up != null)
-                //check if the current cell is one of the top cells
-                //if it is not null, it is not one of the top cells
                 return;
                 Cells2048 currentCell = this;
                 SlideUp(currentCell);
@@ -55,6 +59,12 @@ public class Cells2048 : MonoBehaviour
                 SlideRight(currentCell);
         }
     }
+/**
+* <summary>
+moves a cell (up, left, down, right) combining it with another cell if they have the same value,
+or just moves it (up, left, down, right) if the next cell is empty, repeating this process until it can't move further.
+</summary>
+*/
     void SlideUp(Cells2048 currentCell)
     {
         if(currentCell.down == null)

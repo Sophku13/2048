@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject fillPrefab;
     [SerializeField] Transform[] Cells;
     //^used to make the private variables accessible within the Unity editor without making them public
-    public static Action<String> slide;
+    public static Action<String> Slide;
     
     // Start is called before the first frame update
     void Start()
@@ -19,30 +19,34 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ///<summary>
+        ///Key Input handler: WASD
+        ///</summary>
         if(Input.GetKeyDown(KeyCode.Space))
         {
             SpawnCells();
         }
-        //Inputs for all directions with WASD
         if(Input.GetKeyDown(KeyCode.W))
         {
-            slide("w"); // observer pattern! sending the message
+            Slide("w"); // observer pattern! sending the message
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
-            slide("a");
+            Slide("a");
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
-            slide("s");
+            Slide("s");
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
-            slide("d");
+            Slide("d");
         }
     }
     public void SpawnCells()
-    //instantiate fill cells
+    ///<summary>
+    ///This method randomly creates and places new cells with values of 2 or 4 in empty spots
+    ///</summary>
     {
         int spawnChoice = UnityEngine.Random.Range(0, Cells.Length);
         if(Cells[spawnChoice].childCount != 0)
@@ -53,11 +57,11 @@ public class GameController : MonoBehaviour
         }
         float chance = UnityEngine.Random.Range(0f, 1f);
         Debug.Log(chance);
-        if(chance < 0.2f) // do nothing
+        if(chance < 0.2f) // do nothing (20%)
         {
             return;
         }
-        else if(chance < 0.8f) // instantiate a  fill object with value 2
+        else if(chance < 0.8f) // instantiate a fill object with value 2 (60%)
         {
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(2);
@@ -65,9 +69,8 @@ public class GameController : MonoBehaviour
             Cells[spawnChoice].GetComponent<Cells2048>().fill = tempFillComp;
             tempFillComp.FillValueUpdate(2);
         }
-            else // instantiate a  fill object with value 4
+            else // instantiate a  fill object with value 4 (20%)
         {
-       
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(4);
             FillTiles tempFillComp = tempFill.GetComponent<FillTiles>();
