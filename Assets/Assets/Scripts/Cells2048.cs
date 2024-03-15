@@ -22,13 +22,14 @@ public class Cells2048 : MonoBehaviour
     }
 
     private void OnSlide(string sentContents)
+    {
 /**
 * <summary>
 reacts to direction inputs ('w', 'a', 's', 'd')
 and moves an object Up, Left, Down, or Right, unless it's at the grid's edge. 
 </summary>
 */
-    {
+        CellCheck();
         Debug.Log(sentContents);
         if (sentContents == "w") // shift all fill objects Up
         {
@@ -112,7 +113,6 @@ or just moves it (Up, Left, Down, Right) if the next cell is empty, repeating th
             {
                 nextCell = nextCell.Down;
             }
-
             if(nextCell.fill != null)
             {
                 nextCell.fill.transform.parent = currentCell.transform;
@@ -122,10 +122,10 @@ or just moves it (Up, Left, Down, Right) if the next cell is empty, repeating th
                 Debug.Log("Slide to empty tile");
             }
         }
-
         if (currentCell.Down == null)
             return;
             SlideUp(currentCell.Down);
+            
     }
 void SlideLeft(Cells2048 currentCell)
     {
@@ -179,7 +179,6 @@ void SlideLeft(Cells2048 currentCell)
                 Debug.Log("Slide to empty tile");
             }
         }
-
         if (currentCell.Right == null)
             return;
             SlideLeft(currentCell.Right);
@@ -188,9 +187,7 @@ void SlideLeft(Cells2048 currentCell)
     {
         if(currentCell.Up == null)
         return;
-
         Debug.Log(currentCell.gameObject);
-
         if(currentCell.fill != null)
         {
             Cells2048 nextCell = currentCell.Up;
@@ -198,7 +195,6 @@ void SlideLeft(Cells2048 currentCell)
             {
                 nextCell = nextCell.Up;
             }
-
             if(nextCell.fill != null)
             {
                 if(currentCell.fill.Value == nextCell.fill.Value)
@@ -226,7 +222,6 @@ void SlideLeft(Cells2048 currentCell)
             {
                 nextCell = nextCell.Up;
             }
-
             if(nextCell.fill != null)
             {
                 nextCell.fill.transform.parent = currentCell.transform;
@@ -236,19 +231,15 @@ void SlideLeft(Cells2048 currentCell)
                 Debug.Log("Slide to empty tile");
             }
         }
-
         if (currentCell.Up == null)
             return;
             SlideDown(currentCell.Up);
     }
-
     void SlideRight(Cells2048 currentCell) // work for Right
     {
         if(currentCell.Left == null)
         return;
-
         Debug.Log(currentCell.gameObject);
-
         if(currentCell.fill != null)
         {
             Cells2048 nextCell = currentCell.Left;
@@ -256,7 +247,6 @@ void SlideLeft(Cells2048 currentCell)
             {
                 nextCell = nextCell.Left;
             }
-
             if(nextCell.fill != null)
             {
                 if(currentCell.fill.Value == nextCell.fill.Value)
@@ -283,7 +273,6 @@ void SlideLeft(Cells2048 currentCell)
             {
                 nextCell = nextCell.Left;
             }
-
             if(nextCell.fill != null)
             {
                 nextCell.fill.transform.parent = currentCell.transform;
@@ -297,5 +286,39 @@ void SlideLeft(Cells2048 currentCell)
         if (currentCell.Left == null)
             return;
             SlideRight(currentCell.Left);
+    }
+    void CellCheck()
+    {
+        if(fill == null)
+            return;
+        if(Up != null)
+        {
+            if(Up.fill == null)
+            return;
+            if(Up.fill.Value == fill.Value)
+            return;
+        }
+        if(Down != null)
+        {
+            if(Down.fill == null)
+            return;
+            if(Down.fill.Value == fill.Value)
+            return;
+        }
+        if(Left != null)
+        {
+            if(Left.fill == null)
+            return;
+            if(Left.fill.Value == fill.Value)
+            return;
+        }
+        if(Right != null)
+        {
+            if(Right.fill == null)
+            return;
+            if(Right.fill.Value == fill.Value)
+            return;
+        }
+        GameController.instance.GameOverCheck();
     }
 }
