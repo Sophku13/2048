@@ -58,6 +58,11 @@ and moves an object up, left, down, or right, unless it's at the grid's edge.
                 Cells2048 currentCell = this;
                 SlideRight(currentCell);
         }
+        GameController.ticker++;
+        if(GameController.ticker == 4)
+        {
+            GameController.instance.SpawnCells();
+        }
     }
 /**
 * <summary>
@@ -90,9 +95,9 @@ or just moves it (up, left, down, right) if the next cell is empty, repeating th
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else //not the same value
+                else if(currentCell.down.fill != nextCell.fill)
                 {
-                    nextCell.fill.Doubled();
+                    Debug.Log("not doubled");
                     nextCell.fill.transform.parent = currentCell.down.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.down.fill = nextCell.fill;
@@ -147,9 +152,9 @@ void SlideLeft(Cells2048 currentCell)
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else //not the same value
+                else if(currentCell.right.fill != nextCell.fill)
                 {
-                    nextCell.fill.Doubled();
+                    Debug.Log("not doubled");
                     nextCell.fill.transform.parent = currentCell.right.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.right.fill = nextCell.fill;
@@ -204,9 +209,9 @@ void SlideLeft(Cells2048 currentCell)
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else //not the same value
+                else if(currentCell.up.fill != nextCell.fill)
                 {
-                    nextCell.fill.Doubled();
+                    Debug.Log("not doubled");
                     nextCell.fill.transform.parent = currentCell.up.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.up.fill = nextCell.fill;
@@ -261,9 +266,9 @@ void SlideLeft(Cells2048 currentCell)
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else 
+                else if (currentCell.left.fill != nextCell.fill)
                 {
-                    nextCell.fill.Doubled();
+                    Debug.Log("not doubled");
                     nextCell.fill.transform.parent = currentCell.left.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.left.fill = nextCell.fill;
