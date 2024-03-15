@@ -9,11 +9,27 @@ public class FillTiles : MonoBehaviour
     [SerializeField] Text displayedValue;
     [SerializeField] float speed;
     bool hasCombined;
+    [SerializeField] private Image tileImage; 
     public void FillValueUpdate(int ValueIn)
-{
-    Value = ValueIn;
-    displayedValue.text = Value.ToString();
-}
+    {
+        Value = ValueIn;
+        displayedValue.text = Value.ToString();
+        int colorIndex = GetColorIndex(Value);
+        tileImage = GetComponent<Image>();
+        tileImage.color = GameController.instance.fillColor[colorIndex];
+    }
+    int GetColorIndex(int ValueIn)
+    {
+        int index = 0;
+        while(ValueIn != 1)
+        {
+            index++;
+            ValueIn /= 2;
+        }
+        index--;
+        return index;
+    }
+
     private void Update()
     {
         ///<summary>
@@ -38,5 +54,8 @@ public class FillTiles : MonoBehaviour
         Value *= 2;
         GameController.instance.ScoreUpdate(Value);
         displayedValue.text = Value.ToString();
+        
+        int colorIndex = GetColorIndex(Value);
+        tileImage.color = GameController.instance.fillColor[colorIndex];
     }
 }

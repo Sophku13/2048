@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     int isGameOver;
     [SerializeField] GameObject gameOverPanel;
 
+    public Color[] fillColor;  
     private void OnEnable()
     {
         if(instance == null)
@@ -25,7 +26,6 @@ public class GameController : MonoBehaviour
             instance = this;
         }
     }
-    
     // Start is called before the first frame update
     void Start()
     {
