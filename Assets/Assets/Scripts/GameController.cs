@@ -7,7 +7,7 @@ using System;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public static int ticker;
+    public static int ActionCounter;
     [SerializeField] GameObject fillPrefab;
     [SerializeField] Transform[] Cells;
     //^used to make the private variables accessible within the Unity editor without making them public
@@ -42,28 +42,28 @@ public class GameController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.W))
         {
-            ticker = 0;
+            ActionCounter = 0;
             Slide("w"); // observer pattern! sending the message
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
-            ticker = 0;
+            ActionCounter = 0;
             Slide("a");
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
-            ticker = 0;
+            ActionCounter = 0;
             Slide("s");
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
-            ticker = 0;
+            ActionCounter = 0;
             Slide("d");
         }
     }
     public void SpawnCells()
     ///<summary>
-    ///This method randomly creates and places new cells with values of 2 or 4 in empty spots
+    ///This method randomly creates and places new cells with Values of 2 or 4 in empty spots
     ///</summary>
     {
         int spawnChoice = UnityEngine.Random.Range(0, Cells.Length);
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
         {
             return;
         }
-        else if(chance < 0.8f) // instantiate a fill object with value 2 (60%)
+        else if(chance < 0.8f) // instantiate a fill object with Value 2 (60%)
         {
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(2);
@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
             Cells[spawnChoice].GetComponent<Cells2048>().fill = tempFillComp;
             tempFillComp.FillValueUpdate(2);
         }
-            else // instantiate a  fill object with value 4 (20%)
+            else // instantiate a  fill object with Value 4 (20%)
         {
             GameObject tempFill = Instantiate(fillPrefab, Cells[spawnChoice]);
             Debug.Log(4);
@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour
     }
     public void StartSpawnFill()
     ///<summary>
-    ///Create starting tiles (only with value 2)
+    ///Create starting tiles (only with Value 2)
     ///</summary>
     {
         int spawnChoice = UnityEngine.Random.Range(0, Cells.Length);

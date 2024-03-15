@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Cells2048 : MonoBehaviour
 {
-    public Cells2048 right;
-    public Cells2048 left;
-    public Cells2048 up;
-    public Cells2048 down;
+    public Cells2048 Right;
+    public Cells2048 Left;
+    public Cells2048 Up;
+    public Cells2048 Down;
 
     public FillTiles fill;
 
@@ -25,92 +25,92 @@ public class Cells2048 : MonoBehaviour
 /**
 * <summary>
 reacts to direction inputs ('w', 'a', 's', 'd')
-and moves an object up, left, down, or right, unless it's at the grid's edge. 
+and moves an object Up, Left, Down, or Right, unless it's at the grid's edge. 
 </summary>
 */
     {
         Debug.Log(sentContents);
-        if (sentContents == "w") // shift all fill objects up
+        if (sentContents == "w") // shift all fill objects Up
         {
-            if (up != null)
+            if (Up != null)
                 return;
                 Cells2048 currentCell = this;
                 SlideUp(currentCell);
         }
-        if (sentContents == "a") // shift all fill objects left
+        if (sentContents == "a") // shift all fill objects Left
         {
-            if (left != null)
+            if (Left != null)
                 return;
                 Cells2048 currentCell = this;
                 SlideLeft(currentCell);
         }
-        if (sentContents == "s") // shift all fill objects down
+        if (sentContents == "s") // shift all fill objects Down
         {
-            if (down != null)
+            if (Down != null)
                 return;
                 Cells2048 currentCell = this;
                 SlideDown(currentCell);
         }
-        if (sentContents == "d") // shift all fill objects right
+        if (sentContents == "d") // shift all fill objects Right
         {
-            if (right != null)
+            if (Right != null)
                 return;
                 Cells2048 currentCell = this;
                 SlideRight(currentCell);
         }
-        GameController.ticker++;
-        if(GameController.ticker == 4)
+        GameController.ActionCounter++;
+        if(GameController.ActionCounter == 4)
         {
             GameController.instance.SpawnCells();
         }
     }
 /**
 * <summary>
-moves a cell (up, left, down, right) combining it with another cell if they have the same value,
-or just moves it (up, left, down, right) if the next cell is empty, repeating this process until it can't move further.
+moves a cell (Up, Left, Down, Right) combining it with another cell if they have the same Value,
+or just moves it (Up, Left, Down, Right) if the next cell is empty, repeating this process until it can't move further.
 </summary>
 */
     void SlideUp(Cells2048 currentCell)
     {
-        if(currentCell.down == null)
+        if(currentCell.Down == null)
         return;
 
         Debug.Log(currentCell.gameObject);
 
         if(currentCell.fill != null)
         {
-            Cells2048 nextCell = currentCell.down;
-            while(nextCell.down != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Down;
+            while(nextCell.Down != null && nextCell.fill == null)
             {
-                nextCell = nextCell.down;
+                nextCell = nextCell.Down;
             }
 
             if(nextCell.fill != null)
             {
-                if(currentCell.fill.value == nextCell.fill.value)
+                if(currentCell.fill.Value == nextCell.fill.Value)
                 {
                     nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
-                    //2 fill objects with the same value that can be combined
+                    //2 fill objects with the same Value that can be combined
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else if(currentCell.down.fill != nextCell.fill)
+                else if(currentCell.Down.fill != nextCell.fill)
                 {
                     Debug.Log("not doubled");
-                    nextCell.fill.transform.parent = currentCell.down.transform;
+                    nextCell.fill.transform.parent = currentCell.Down.transform;
                     currentCell.fill = nextCell.fill;
-                    nextCell.down.fill = nextCell.fill;
+                    nextCell.Down.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
             }
         }
         else
         {
-            Cells2048 nextCell = currentCell.down;
-            while(nextCell.down != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Down;
+            while(nextCell.Down != null && nextCell.fill == null)
             {
-                nextCell = nextCell.down;
+                nextCell = nextCell.Down;
             }
 
             if(nextCell.fill != null)
@@ -123,51 +123,51 @@ or just moves it (up, left, down, right) if the next cell is empty, repeating th
             }
         }
 
-        if (currentCell.down == null)
+        if (currentCell.Down == null)
             return;
-            SlideUp(currentCell.down);
+            SlideUp(currentCell.Down);
     }
 void SlideLeft(Cells2048 currentCell)
     {
-        if(currentCell.right == null)
+        if(currentCell.Right == null)
         return;
 
         Debug.Log(currentCell.gameObject);
 
         if(currentCell.fill != null)
         {
-            Cells2048 nextCell = currentCell.right;
-            while(nextCell.right != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Right;
+            while(nextCell.Right != null && nextCell.fill == null)
             {
-                nextCell = nextCell.right;
+                nextCell = nextCell.Right;
             }
 
             if(nextCell.fill != null)
             {
-                if(currentCell.fill.value == nextCell.fill.value)
+                if(currentCell.fill.Value == nextCell.fill.Value)
                 {
                     nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
-                    //2 fill objects with the same value that can be combined
+                    //2 fill objects with the same Value that can be combined
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else if(currentCell.right.fill != nextCell.fill)
+                else if(currentCell.Right.fill != nextCell.fill)
                 {
                     Debug.Log("not doubled");
-                    nextCell.fill.transform.parent = currentCell.right.transform;
+                    nextCell.fill.transform.parent = currentCell.Right.transform;
                     currentCell.fill = nextCell.fill;
-                    nextCell.right.fill = nextCell.fill;
+                    nextCell.Right.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
             }
         }
         else
         {
-            Cells2048 nextCell = currentCell.right;
-            while(nextCell.right != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Right;
+            while(nextCell.Right != null && nextCell.fill == null)
             {
-                nextCell = nextCell.right;
+                nextCell = nextCell.Right;
             }
 
             if(nextCell.fill != null)
@@ -180,51 +180,51 @@ void SlideLeft(Cells2048 currentCell)
             }
         }
 
-        if (currentCell.right == null)
+        if (currentCell.Right == null)
             return;
-            SlideLeft(currentCell.right);
+            SlideLeft(currentCell.Right);
     }
     void SlideDown(Cells2048 currentCell)
     {
-        if(currentCell.up == null)
+        if(currentCell.Up == null)
         return;
 
         Debug.Log(currentCell.gameObject);
 
         if(currentCell.fill != null)
         {
-            Cells2048 nextCell = currentCell.up;
-            while(nextCell.up != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Up;
+            while(nextCell.Up != null && nextCell.fill == null)
             {
-                nextCell = nextCell.up;
+                nextCell = nextCell.Up;
             }
 
             if(nextCell.fill != null)
             {
-                if(currentCell.fill.value == nextCell.fill.value)
+                if(currentCell.fill.Value == nextCell.fill.Value)
                 {
                     nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
-                    //2 fill objects with the same value that can be combined
+                    //2 fill objects with the same Value that can be combined
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else if(currentCell.up.fill != nextCell.fill)
+                else if(currentCell.Up.fill != nextCell.fill)
                 {
                     Debug.Log("not doubled");
-                    nextCell.fill.transform.parent = currentCell.up.transform;
+                    nextCell.fill.transform.parent = currentCell.Up.transform;
                     currentCell.fill = nextCell.fill;
-                    nextCell.up.fill = nextCell.fill;
+                    nextCell.Up.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
             }
         }
         else
         {
-            Cells2048 nextCell = currentCell.up;
-            while(nextCell.up != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Up;
+            while(nextCell.Up != null && nextCell.fill == null)
             {
-                nextCell = nextCell.up;
+                nextCell = nextCell.Up;
             }
 
             if(nextCell.fill != null)
@@ -237,51 +237,51 @@ void SlideLeft(Cells2048 currentCell)
             }
         }
 
-        if (currentCell.up == null)
+        if (currentCell.Up == null)
             return;
-            SlideDown(currentCell.up);
+            SlideDown(currentCell.Up);
     }
 
-    void SlideRight(Cells2048 currentCell) // work for right
+    void SlideRight(Cells2048 currentCell) // work for Right
     {
-        if(currentCell.left == null)
+        if(currentCell.Left == null)
         return;
 
         Debug.Log(currentCell.gameObject);
 
         if(currentCell.fill != null)
         {
-            Cells2048 nextCell = currentCell.left;
-            while(nextCell.left != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Left;
+            while(nextCell.Left != null && nextCell.fill == null)
             {
-                nextCell = nextCell.left;
+                nextCell = nextCell.Left;
             }
 
             if(nextCell.fill != null)
             {
-                if(currentCell.fill.value == nextCell.fill.value)
+                if(currentCell.fill.Value == nextCell.fill.Value)
                 {
                     nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
-                else if (currentCell.left.fill != nextCell.fill)
+                else if (currentCell.Left.fill != nextCell.fill)
                 {
                     Debug.Log("not doubled");
-                    nextCell.fill.transform.parent = currentCell.left.transform;
+                    nextCell.fill.transform.parent = currentCell.Left.transform;
                     currentCell.fill = nextCell.fill;
-                    nextCell.left.fill = nextCell.fill;
+                    nextCell.Left.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
             }
         }
         else
         {
-            Cells2048 nextCell = currentCell.left;
-            while(nextCell.left != null && nextCell.fill == null)
+            Cells2048 nextCell = currentCell.Left;
+            while(nextCell.Left != null && nextCell.fill == null)
             {
-                nextCell = nextCell.left;
+                nextCell = nextCell.Left;
             }
 
             if(nextCell.fill != null)
@@ -294,8 +294,8 @@ void SlideLeft(Cells2048 currentCell)
             }
         }
 
-        if (currentCell.left == null)
+        if (currentCell.Left == null)
             return;
-            SlideRight(currentCell.left);
+            SlideRight(currentCell.Left);
     }
 }

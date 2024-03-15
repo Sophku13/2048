@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class FillTiles : MonoBehaviour
 {
-    public int value;
+    public int Value;
     [SerializeField] Text displayedValue;
     [SerializeField] float speed;
     bool hasCombined;
-    public void FillValueUpdate(int valueIn)
+    public void FillValueUpdate(int ValueIn)
 {
-    value = valueIn;
-    displayedValue.text = value.ToString();
+    Value = ValueIn;
+    displayedValue.text = Value.ToString();
 }
     private void Update()
     {
         ///<summary>
-        ///Change speed at which variables move, combine and double the value on the tiles
+        ///Change speed at which variables move, combine and double the Value on the tiles
         ///</summary>
         if(transform.localPosition != Vector3.zero)
         {
@@ -35,7 +35,8 @@ public class FillTiles : MonoBehaviour
     }
     public void Doubled()
     {
-        value *= 2;
-        displayedValue.text = value.ToString();
+        Value *= 2;
+        GameController.instance.ScoreUpdate(Value);
+        displayedValue.text = Value.ToString();
     }
 }
