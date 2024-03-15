@@ -13,12 +13,12 @@ public class Cells2048 : MonoBehaviour
 
     private void OnEnable() // Subscribes to a slide event
     {
-        GameController.slide += OnSlide;
+        GameController.Slide += OnSlide;
     }
 
     private void OnDisable() // Unsubscribes
     {
-        GameController.slide -= OnSlide;
+        GameController.Slide -= OnSlide;
     }
 
     private void OnSlide(string sentContents)
@@ -84,7 +84,7 @@ or just moves it (up, left, down, right) if the next cell is empty, repeating th
             {
                 if(currentCell.fill.value == nextCell.fill.value)
                 {
-                    Debug.Log("doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
                     //2 fill objects with the same value that can be combined
                     currentCell.fill = nextCell.fill;
@@ -92,7 +92,7 @@ or just moves it (up, left, down, right) if the next cell is empty, repeating th
                 }
                 else //not the same value
                 {
-                    Debug.Log("not doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.down.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.down.fill = nextCell.fill;
@@ -141,7 +141,7 @@ void SlideLeft(Cells2048 currentCell)
             {
                 if(currentCell.fill.value == nextCell.fill.value)
                 {
-                    Debug.Log("doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
                     //2 fill objects with the same value that can be combined
                     currentCell.fill = nextCell.fill;
@@ -149,7 +149,7 @@ void SlideLeft(Cells2048 currentCell)
                 }
                 else //not the same value
                 {
-                    Debug.Log("not doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.right.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.right.fill = nextCell.fill;
@@ -198,7 +198,7 @@ void SlideLeft(Cells2048 currentCell)
             {
                 if(currentCell.fill.value == nextCell.fill.value)
                 {
-                    Debug.Log("doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
                     //2 fill objects with the same value that can be combined
                     currentCell.fill = nextCell.fill;
@@ -206,7 +206,7 @@ void SlideLeft(Cells2048 currentCell)
                 }
                 else //not the same value
                 {
-                    Debug.Log("not doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.up.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.up.fill = nextCell.fill;
@@ -256,14 +256,14 @@ void SlideLeft(Cells2048 currentCell)
             {
                 if(currentCell.fill.value == nextCell.fill.value)
                 {
-                    Debug.Log("doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.fill = null;
                 }
                 else 
                 {
-                    Debug.Log("not doubled");
+                    nextCell.fill.Doubled();
                     nextCell.fill.transform.parent = currentCell.left.transform;
                     currentCell.fill = nextCell.fill;
                     nextCell.left.fill = nextCell.fill;
