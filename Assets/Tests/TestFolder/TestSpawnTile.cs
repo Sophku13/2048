@@ -6,12 +6,4 @@ using UnityEngine.TestTools;
 
 public class TestSpawnTile
 {
-
-    [Test]
-    public void TestSpawnTile2()
-    {
-       
-    }
-
- 
 }
